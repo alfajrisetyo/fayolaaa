@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Fayolaa</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffd6e7, #fff0f5, #f8c8dc);
+    overflow: hidden;
+}
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    color: #ff6b9d;
+    font-size: 22px;
+    animation: float 7s linear infinite;
+    opacity: .7;
+    pointer-events: none;
+}
+
+@keyframes float {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.container {
+    width: 90%;
+    max-width: 420px;
+    padding: 35px 25px;
+    background: rgba(255,255,255,.85);
+    border: 2px solid white;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(255,105,150,.2);
+    position: relative;
+    z-index: 2;
+}
+
+.emoji {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    color: #e75480;
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #a75b78;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.question {
+    color: #d94f83;
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 22px;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border: 2px solid #ffc1d6;
+    border-radius: 15px;
+    background: #fff5f9;
+    color: #d94f83;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.option:hover {
+    background: #ffb6cf;
+    color: white;
+    transform: scale(1.04);
+}
+
+#result {
+    display: none;
+    margin-top: 22px;
+    color: #d94f83;
+    font-size: 17px;
+    line-height: 1.7;
+    animation: appear .6s ease;
+}
+
+@keyframes appear {
+    from {opacity: 0; transform: translateY(15px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.footer {
+    margin-top: 25px;
+    color: #d98ba8;
+    font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="emoji"></div>
+
+    <h1></h1>
+    <p class="subtitle"></p>
+
+    <div class="question">
+        Seberapa besar keinginanmu untuk tida mencoba lagi olaa?
+    </div>
+
+    <button class="option" onclick="answer('a')">A. 100%</button>
+    <button class="option" onclick="answer('b')">B. 80%</button>
+    <button class="option" onclick="answer('c')">C. 10%</button>
+    <button class="option" onclick="answer('d')">D. 1000000% </button>
+
+    <div id="result"></div>
+
+    <div class="footer">
+        dari botakk untuk olaa 
+    </div>
+</div>
+
+<script>
+function answer(choice) {
+    const result = document.getElementById("result");
+
+    const messages = {
+
+    };
+
+    result.style.display = "block";
+    result.innerHTML = messages[choice] + "<br><br>♡  ♡";
+
+    document.querySelectorAll(".option").forEach(button => {
+        button.disabled = true;
+        button.style.opacity = ".65";
+        button.style.cursor = "default";
+    });
+}
+
+// Floating hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = ["♡", "♥", "💕", "💗"][Math.floor(Math.random()*4)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (4 + Math.random() * 5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 9000);
+}, 500);
+</script>
+
+</body>
+</html>
